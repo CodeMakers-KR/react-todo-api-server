@@ -31,7 +31,10 @@ public class TodoApi {
 	@PostMapping("/task")
 	public AjaxResponse addTask(@RequestBody TodoVO task) {
 		todoService.addTask(task);
-		return AjaxResponse.CREATED();
+		
+		List<TodoVO> todos = todoService.getTaskList();
+		
+		return AjaxResponse.CREATED().setBody(todos);
 	}
 	
 	@GetMapping("/task/{taskId}")
@@ -47,7 +50,8 @@ public class TodoApi {
 	public AjaxResponse done(@PathVariable String taskId) {
 		boolean isDone = todoService.done(taskId);
 		if (isDone) {
-			return AjaxResponse.OK();
+			List<TodoVO> todos = todoService.getTaskList();
+			return AjaxResponse.OK(todos);
 		}
 		return AjaxResponse.NOT_FOUND();
 	}
