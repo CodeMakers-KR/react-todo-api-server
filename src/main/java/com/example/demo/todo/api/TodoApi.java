@@ -47,8 +47,7 @@ public class TodoApi {
 	public AjaxResponse done(@PathVariable String taskId) {
 		boolean isDone = todoService.done(taskId);
 		if (isDone) {
-			List<TodoVO> todos = todoService.getTaskList();
-			return AjaxResponse.OK(todos);
+			return AjaxResponse.OK(taskId);
 		}
 		return AjaxResponse.NOT_FOUND();
 	}
