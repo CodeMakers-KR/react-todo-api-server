@@ -13,6 +13,8 @@ public interface TodoService {
 	boolean done(String taskId);
 	
 	boolean addTask(TodoVO todoVO);
+
+	boolean allDone();
 	
 	
 }

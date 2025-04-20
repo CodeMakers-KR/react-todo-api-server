@@ -57,5 +57,14 @@ public class TodoDaoImpl implements TodoDao {
 		todoVO.setTaskId("task_" + fileDBHandler.nextSeq("todo"));
 		return fileDBHandler.insert("todo", todoVO);
 	}
+
+	@Override
+	public int allDone() {
+		return fileDBHandler.update("todo", line -> {
+			TodoVO todoVO = gson.fromJson(line, TodoVO.class);
+			todoVO.setDone(true);
+			return todoVO;
+		});
+	}
 	
 }

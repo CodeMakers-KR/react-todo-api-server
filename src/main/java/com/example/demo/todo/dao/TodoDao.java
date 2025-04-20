@@ -13,5 +13,7 @@ public interface TodoDao {
 	int done(String taskId);
 	
 	int addTask(TodoVO todoVO);
+
+	int allDone();
 	
 }

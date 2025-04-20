@@ -52,4 +52,10 @@ public class TodoApi {
 		return AjaxResponse.NOT_FOUND();
 	}
 	
+	@PutMapping("/task]")
+	public AjaxResponse allDone() {
+		todoService.allDone();
+		return AjaxResponse.OK();
+	}
+	
 }

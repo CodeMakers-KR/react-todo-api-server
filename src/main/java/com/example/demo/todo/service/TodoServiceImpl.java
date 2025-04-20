@@ -38,4 +38,9 @@ public class TodoServiceImpl implements TodoService {
 		return todoDao.addTask(todoVO) > 0;
 	}
 
+	@Override
+	public boolean allDone() {
+		return todoDao.allDone() > 0;
+	}
+
 }
