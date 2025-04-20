@@ -31,10 +31,7 @@ public class TodoApi {
 	@PostMapping("/task")
 	public AjaxResponse addTask(@RequestBody TodoVO task) {
 		todoService.addTask(task);
-		
-		List<TodoVO> todos = todoService.getTaskList();
-		
-		return AjaxResponse.CREATED().setBody(todos);
+		return AjaxResponse.CREATED().setBody(task);
 	}
 	
 	@GetMapping("/task/{taskId}")
