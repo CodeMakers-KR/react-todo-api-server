@@ -1,0 +1,47 @@
+{"properties": [
+  {
+    "name": "app.security.filter-url.starts-with",
+    "type": "java.lang.String",
+    "description": "A description for 'app.security.filter-url.starts-with'"
+  },
+  {
+    "name": "app.multipart.base-dir",
+    "type": "java.lang.String",
+    "description": "A description for 'app.multipart.base-dir'"
+  },
+  {
+    "name": "app.security.filter-url.ignore",
+    "type": "java.lang.String",
+    "description": "A description for 'app.security.filter-url.ignore'"
+  },
+  {
+    "name": "app.multipart.obfuscation.enable",
+    "type": "java.lang.String",
+    "description": "A description for 'app.multipart.obfuscation.enable'"
+  },
+  {
+    "name": "app.multipart.obfuscation.hide-ext.enable:",
+    "type": "java.lang.String",
+    "description": "A description for 'app.multipart.obfuscation.hide-ext.enable:'"
+  },
+  {
+    "name": "app.datasource.path",
+    "type": "java.lang.String",
+    "description": "A description for 'app.datasource.path'"
+  },
+  {
+    "name": "app.datasource.filename",
+    "type": "java.lang.String",
+    "description": "A description for 'app.datasource.filename'"
+  },
+  {
+    "name": "jwt.issuer",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.issuer'"
+  },
+  {
+    "name": "jwt.secret-key",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.secret-key'"
+  }
+]}

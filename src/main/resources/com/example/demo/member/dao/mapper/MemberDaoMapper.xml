@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.member.dao.MemberDao">
+
+	<select id="getEmailCount"
+			parameterType="string">
+		SELECT COUNT(1)
+		  FROM MEMBERS
+		 WHERE EMAIL = #{_parameter}
+	</select>
+
+	<insert id="createNewMember"
+			parameterType="com.example.demo.member.vo.MemberVO">
+		INSERT INTO MEMBERS (
+		   EMAIL
+		 , NAME
+		 , PASSWORD
+		 , SALT )
+		VALUES (
+		   #{email}
+		 , #{name}
+		 , #{password}
+		 , #{salt} )
+	</insert>
+	
+	<select id="getSalt"
+			parameterType="string">
+		SELECT SALT
+		  FROM MEMBERS
+		 WHERE EMAIL = #{_parameter}
+	</select>
+	
+	<!-- <select id="getMember"
+			parameterType="com.example.demo.member.vo.MemberVO"
+			resultType="com.example.demo.member.vo.MemberVO">
+		SELECT EMAIL
+			 , NAME
+			 , PASSWORD
+		  FROM MEMBERS
+		 WHERE EMAIL = #{email}
+		   AND PASSWORD = #{password}
+	</select> -->
+	
+	<delete id="deleteMe"
+			parameterType="string">
+		DELETE
+		  FROM MEMBERS	
+		 WHERE EMAIL = #{email}	
+	</delete>
+	
+	<select id="getMemberByEmail"
+			parameterType="string"
+			resultType="com.example.demo.member.vo.MemberVO">
+		SELECT EMAIL
+			 , NAME
+			 , PASSWORD
+			 , SALT
+			 , ROLE
+		  FROM MEMBERS
+		 WHERE EMAIL = #{_parameter}
+	</select>
+	
+	<update id="createOrUpdate"
+			parameterType="com.example.demo.member.vo.MemberVO">
+		MERGE INTO MEMBERS M
+		USING (SELECT 1 FROM DUAL) D
+		   ON (M.EMAIL = #{email})
+		 WHEN MATCHED THEN
+		   UPDATE 
+			  SET M.PROVIDER = #{provider}
+		 WHEN NOT MATCHED THEN
+		   INSERT (
+		      M.EMAIL
+		    , M.NAME
+		    , M.PASSWORD
+		    , M.SALT
+		    , M.PROVIDER )
+		   VALUES (
+		      #{email}
+		    , #{name}
+		    , NVL(#{password}, 'OAUTH')
+		    , NVL(#{salt}, 'OAUTH')
+		    , #{provider} )
+	</update>
+	
+</mapper>
