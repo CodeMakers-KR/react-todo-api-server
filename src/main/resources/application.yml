@@ -52,9 +52,9 @@ app:
     datasource:
         path: C:/filedb
         filename: 
-            boards.db,boards_seq.db
-            replies.db,replies_seq.db
-            members.db
+            boards.db,boards_seq.db,
+            replies.db,replies_seq.db,
+            members.db,todo.db,todo_seq.db
 
 jwt:
     issuer: mcjang1116@gmail.com

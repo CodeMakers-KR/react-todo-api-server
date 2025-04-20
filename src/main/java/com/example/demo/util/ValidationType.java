@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.example.demo.util.Validator.Type;
 
@@ -100,22 +99,6 @@ public class ValidationType {
 		}
 		
 		return null;
-	}
-	
-	private Map<?, ?> getMapFieldValue(Object object, String fieldName) {
-		if (getFieldValue(object, fieldName) instanceof Map) {
-			return (Map<?, ?>) getFieldValue(object, fieldName);
-		}
-		
-		return null;
-	}
-	
-	private boolean getBooleanFieldValue(Object object, String fieldName) {
-		String value = getStringFieldValue(object, fieldName);
-		if (value == null) {
-			return false;
-		}
-		return Boolean.parseBoolean(value);
 	}
 	
 	private int getIntFieldValue(Object object, String fieldName) {

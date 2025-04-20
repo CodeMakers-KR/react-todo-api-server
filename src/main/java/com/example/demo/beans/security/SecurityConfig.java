@@ -17,7 +17,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
-import com.example.demo.beans.security.handler.LoginFailureHandler;
 import com.example.demo.beans.security.jwt.JwtAuthenticationFilter;
 import com.example.demo.member.dao.MemberDao;
 
@@ -35,12 +34,12 @@ public class SecurityConfig {
 //	private OAuthService oauthService;
 	
 	@Bean
-	public UserDetailsService userDetailsService() {
+	UserDetailsService userDetailsService() {
 		return new SecurityUserDetailsService(memberDao);
 	}
 	
 	@Bean
-	public PasswordEncoder passwordEncoder() {
+	PasswordEncoder passwordEncoder() {
 		return new SecuritySHA();
 	}
 	
@@ -75,6 +74,7 @@ public class SecurityConfig {
 										httpRequest.requestMatchers(AntPathRequestMatcher.antMatcher("/board/list")).permitAll()
 												   .requestMatchers(AntPathRequestMatcher.antMatcher("/member/login")).permitAll()
 												   .requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/auth/token")).permitAll()
+												   .requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/task/**")).permitAll()
 												   .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/api/v1/member")).permitAll()
 												   .requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/member/available/**")).permitAll()
 												   .requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/member/logout")).permitAll()

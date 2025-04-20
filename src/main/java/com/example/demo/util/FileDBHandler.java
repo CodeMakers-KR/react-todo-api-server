@@ -28,10 +28,7 @@ public class FileDBHandler {
 
 	@PostConstruct
 	public void setup() {
-		System.out.println("filePath: " + filePath);
-		System.out.println("names: " + names);
 		for (String name : names) {
-			System.out.println("name: " + name);
 			File f = new File(filePath, name);
 			if (!f.getParentFile().exists()) {
 				f.getParentFile().mkdirs();
@@ -156,7 +153,7 @@ public class FileDBHandler {
 		FileReader fr = null;
 		BufferedReader br = null;
 
-		List<T> rows = null;
+		List<T> rows = new ArrayList<>();
 		try {
 			fr = new FileReader(f);
 			br = new BufferedReader(fr);
@@ -164,9 +161,6 @@ public class FileDBHandler {
 			String line = null;
 
 			while ((line = br.readLine()) != null) {
-				if (rows == null) {
-					rows = new ArrayList<>();
-				}
 				T t = select.select(line);
 				if ( t != null ) {
 					rows.add(t);

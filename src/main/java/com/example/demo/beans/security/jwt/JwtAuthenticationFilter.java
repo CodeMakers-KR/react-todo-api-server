@@ -1,12 +1,8 @@
 package com.example.demo.beans.security.jwt;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -42,8 +38,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		String servletPath = request.getServletPath();
 		String method = request.getMethod();
 		
-		System.out.println("Path: " + servletPath);
-		
 		// 요청 URL이 "/api/"로 시작하는 경우만 처리.
 		if ( servletPath.startsWith("/api/v1/")) {
 			
@@ -52,14 +46,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			if (CorsUtils.isPreFlightRequest(request)
 					|| (servletPath.matches("^/api/v[0-9]/auth/token$") && method.equalsIgnoreCase("POST"))
 					|| (servletPath.matches("^/api/v[0-9]/member$") && method.equalsIgnoreCase("POST"))
+					|| (servletPath.matches("^/api/v[0-9]/task.*$"))
 					|| (servletPath.contains("/member/available/"))) {
-				System.out.println("Pass Path: " + servletPath);
-				
 				filterChain.doFilter(request, response);
 				return;
 			}
 			else {
-				System.out.println("Check Path: " + servletPath);
 				// HttpReqeust Header에 추가된 Authorization 값을 추출.
 				String jwt = request.getHeader("Authorization");
 				
