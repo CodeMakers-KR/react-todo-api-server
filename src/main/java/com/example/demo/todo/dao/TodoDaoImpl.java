@@ -1,12 +1,13 @@
 package com.example.demo.todo.dao;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.todo.vo.TaskVO;
-import com.example.demo.todo.vo.TodoVO;
 import com.example.demo.util.FileDBHandler;
 import com.google.gson.Gson;
 
@@ -47,6 +48,7 @@ public class TodoDaoImpl implements TodoDao {
 			TaskVO todoVO = gson.fromJson(line, TaskVO.class);
 			if (todoVO.getId().equals(taskId)) {
 				todoVO.setDone(true);
+				todoVO.setDoneAt(this.now());
 				return todoVO;
 			}
 			return null;
@@ -55,6 +57,8 @@ public class TodoDaoImpl implements TodoDao {
 
 	@Override
 	public int addTask(TaskVO todoVO) {
+		todoVO.setCreateAt(this.now());
+		
 		todoVO.setId("task_" + fileDBHandler.nextSeq("todo"));
 		return fileDBHandler.insert("todo", todoVO);
 	}
@@ -64,8 +68,13 @@ public class TodoDaoImpl implements TodoDao {
 		return fileDBHandler.update("todo", line -> {
 			TaskVO todoVO = gson.fromJson(line, TaskVO.class);
 			todoVO.setDone(true);
+			todoVO.setDoneAt(this.now());
 			return todoVO;
 		});
+	}
+	
+	private String now() {
+		return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 	
 }

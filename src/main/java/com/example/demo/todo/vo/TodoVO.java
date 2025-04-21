@@ -10,6 +10,9 @@ public class TodoVO {
 	private String priority;
 	private boolean isDone;
 
+	private String createAt;
+	private String doneAt;
+
 	public String getTaskId() {
 		return taskId;
 	}
@@ -49,7 +52,23 @@ public class TodoVO {
 	public void setDone(boolean isDone) {
 		this.isDone = isDone;
 	}
-	
+
+	public String getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(String createAt) {
+		this.createAt = createAt;
+	}
+
+	public String getDoneAt() {
+		return doneAt;
+	}
+
+	public void setDoneAt(String doneAt) {
+		this.doneAt = doneAt;
+	}
+
 	public String toString() {
 		return new Gson().toJson(this);
 	}

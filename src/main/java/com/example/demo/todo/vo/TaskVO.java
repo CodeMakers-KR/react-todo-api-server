@@ -10,7 +10,11 @@ public class TaskVO {
 	private String priority;
 	private boolean isDone;
 
-	public TaskVO() {}
+	private String createAt;
+	private String doneAt;
+
+	public TaskVO() {
+	}
 
 	public TaskVO(TodoVO todoVO) {
 		this.id = todoVO.getTaskId();
@@ -18,8 +22,10 @@ public class TaskVO {
 		this.dueDate = todoVO.getDueDate();
 		this.priority = todoVO.getPriority();
 		this.isDone = todoVO.isDone();
+		this.createAt = todoVO.getCreateAt();
+		this.doneAt = todoVO.getDoneAt();
 	}
-	
+
 	public String getId() {
 		return id;
 	}
@@ -60,8 +66,24 @@ public class TaskVO {
 		this.isDone = isDone;
 	}
 
+	public String getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(String createAt) {
+		this.createAt = createAt;
+	}
+
+	public String getDoneAt() {
+		return doneAt;
+	}
+
+	public void setDoneAt(String doneAt) {
+		this.doneAt = doneAt;
+	}
+
 	public String toString() {
 		return new Gson().toJson(this);
 	}
-	
+
 }
