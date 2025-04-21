@@ -31,7 +31,10 @@ public class TodoApi {
 	
 	@PostMapping("/task")
 	public AjaxResponse addTask(@RequestBody TodoVO task) {
-		todoService.addTask(new TaskVO(task));
+		TaskVO tempTaskVO = new TaskVO(task);
+		todoService.addTask(tempTaskVO);
+		task.setTaskId(tempTaskVO.getId());
+		
 		return AjaxResponse.CREATED().setBody(task);
 	}
 	
