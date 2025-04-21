@@ -2,17 +2,17 @@ package com.example.demo.todo.service;
 
 import java.util.List;
 
-import com.example.demo.todo.vo.TodoVO;
+import com.example.demo.todo.vo.TaskVO;
 
 public interface TodoService {
 
-	List<TodoVO> getTaskList();
+	List<TaskVO> getTaskList();
 	
-	TodoVO getTaskBy(String taskId);
+	TaskVO getTaskBy(String taskId);
 	
 	boolean done(String taskId);
 	
-	boolean addTask(TodoVO todoVO);
+	boolean addTask(TaskVO todoVO);
 
 	boolean allDone();
 	

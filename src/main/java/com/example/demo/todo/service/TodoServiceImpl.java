@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.todo.dao.TodoDao;
-import com.example.demo.todo.vo.TodoVO;
+import com.example.demo.todo.vo.TaskVO;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -15,12 +15,12 @@ public class TodoServiceImpl implements TodoService {
 	private TodoDao todoDao;
 	
 	@Override
-	public List<TodoVO> getTaskList() {
+	public List<TaskVO> getTaskList() {
 		return todoDao.getTaskList();
 	}
 
 	@Override
-	public TodoVO getTaskBy(String taskId) {
+	public TaskVO getTaskBy(String taskId) {
 		return todoDao.getTaskBy(taskId);
 	}
 
@@ -34,7 +34,7 @@ public class TodoServiceImpl implements TodoService {
 	}
 
 	@Override
-	public boolean addTask(TodoVO todoVO) {
+	public boolean addTask(TaskVO todoVO) {
 		return todoDao.addTask(todoVO) > 0;
 	}
 

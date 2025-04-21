@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.todo.service.TodoService;
+import com.example.demo.todo.vo.TaskVO;
 import com.example.demo.todo.vo.TodoVO;
 import com.example.demo.util.AjaxResponse;
 
@@ -24,19 +25,19 @@ public class TodoApi {
 	
 	@GetMapping("/task")
 	public AjaxResponse getTasks() {
-		List<TodoVO> todos = todoService.getTaskList();
+		List<TaskVO> todos = todoService.getTaskList();
 		return AjaxResponse.OK(todos);
 	}
 	
 	@PostMapping("/task")
 	public AjaxResponse addTask(@RequestBody TodoVO task) {
-		todoService.addTask(task);
+		todoService.addTask(new TaskVO(task));
 		return AjaxResponse.CREATED().setBody(task);
 	}
 	
 	@GetMapping("/task/{taskId}")
 	public AjaxResponse getTask(@PathVariable String taskId) {
-		TodoVO todo = todoService.getTaskBy(taskId);
+		TaskVO todo = todoService.getTaskBy(taskId);
 		if (todo == null) {
 			return AjaxResponse.NOT_FOUND();
 		}
@@ -52,7 +53,7 @@ public class TodoApi {
 		return AjaxResponse.NOT_FOUND();
 	}
 	
-	@PutMapping("/task]")
+	@PutMapping("/task")
 	public AjaxResponse allDone() {
 		todoService.allDone();
 		return AjaxResponse.OK();
